@@ -7,7 +7,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { DottedBackground } from '@/components/dotted-background'
-import { SiteHeader } from '@/components/Header'
+import { SiteHeader } from '@/components/header'
 
 import appCss from '../styles.css?url'
 
