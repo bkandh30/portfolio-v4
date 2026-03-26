@@ -51,10 +51,12 @@ export default function HomeHero() {
 					style={{ animationDelay: '400ms' }}
 				>
 					<a
-						href="/#projects"
+						href="/resume.pdf"
+						target="_blank"
+						rel="noopener noreferrer"
 						className="button-primary inline-flex items-center rounded-[8px] px-5 py-2.5 text-sm font-medium hover:text-primary-foreground"
 					>
-						View Projects
+						Resume
 					</a>
 					<a
 						href="/#contact"
