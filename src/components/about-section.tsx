@@ -17,15 +17,15 @@ export default function AboutSection() {
 						building backend services, internal platforms, and
 						production APIs in Java and Spring Boot. My work has
 						spanned policy and claims systems, document processing
-						workflows, and event-driven integrations — the kind
-						of infrastructure that production systems depend on
-						every day.
+						workflows, and event-driven integrations — the kind of
+						infrastructure that production systems depend on every
+						day.
 					</p>
 					<p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-foreground sm:text-base">
 						I also work across the frontend with TypeScript and
 						React, building the interfaces that connect to the
-						services I design. Whether it's hardening an API,
-						wiring up a data pipeline, or shipping an application
+						services I design. Whether it's hardening an API, wiring
+						up a data pipeline, or shipping an application
 						end-to-end, I focus on clean architecture, reliable
 						systems, and code that's built for production.
 					</p>

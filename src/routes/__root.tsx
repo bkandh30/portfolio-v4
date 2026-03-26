@@ -59,7 +59,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
-                <DottedBackground />
+				<DottedBackground />
 				{children}
 				<TanStackDevtools
 					config={{
