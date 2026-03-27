@@ -1,6 +1,5 @@
 import {
 	HeadContent,
-	Outlet,
 	Scripts,
 	createRootRoute,
 } from '@tanstack/react-router'
@@ -8,6 +7,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { DottedBackground } from '@/components/dotted-background'
 import { SiteHeader } from '@/components/header'
+import Footer from '#/components/footer-section'
 
 import appCss from '../styles.css?url'
 
@@ -34,20 +34,8 @@ export const Route = createRootRoute({
 			},
 		],
 	}),
-	component: RootLayout,
 	shellComponent: RootDocument,
 })
-
-function RootLayout() {
-	return (
-		<>
-			<SiteHeader />
-			<main>
-				<Outlet />
-			</main>
-		</>
-	)
-}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
@@ -60,7 +48,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<DottedBackground />
+                <SiteHeader />
 				{children}
+                <Footer />
 				<TanStackDevtools
 					config={{
 						position: 'bottom-right',
