@@ -59,12 +59,6 @@ export default function HomeHero() {
 						Resume
 					</a>
 					<a
-						href="/#contact"
-						className="button-secondary inline-flex items-center rounded-[8px] px-5 py-2.5 text-sm font-medium hover:text-foreground"
-					>
-						Contact Me
-					</a>
-					<a
 						href="/blog"
 						className="group ml-1 text-sm font-medium text-muted-foreground transition-colors hover:text-[var(--text-body)]"
 					>
