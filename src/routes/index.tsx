@@ -4,6 +4,7 @@ import AboutSection from '#/components/about-section'
 import ExperienceSection from '#/components/experience-section'
 import SkillsSection from '#/components/skills-section'
 import EducationSection from '#/components/education-section'
+import ProjectsSection from '#/components/projects-section'
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -15,6 +16,7 @@ function App() {
 			<ExperienceSection />
             <SkillsSection />
             <EducationSection />
+            <ProjectsSection />
 		</>
 	)
 }
