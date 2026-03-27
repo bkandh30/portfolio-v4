@@ -406,12 +406,15 @@ export default function ProjectsSection() {
 	return (
 		<section id="projects" className="border-t border-border">
 			<div className="page-wrap py-20 sm:py-28">
-				<p className="text-[0.72rem] font-semibold tracking-wide text-[var(--accent-strong)]">
-					Projects
-				</p>
-				<h2 className="section-title mt-3 text-2xl sm:text-[1.75rem]">
-					Full-stack applications I've designed, built, and shipped.
-				</h2>
+				<div className="mx-auto max-w-3xl text-center">
+					<p className="text-[0.72rem] font-semibold tracking-wide text-[var(--accent-strong)]">
+						Projects
+					</p>
+					<h2 className="section-title mt-3 text-2xl sm:text-[1.75rem]">
+						Full-stack applications I've designed, built, and
+						shipped.
+					</h2>
+				</div>
 
 				<div className="mx-auto mt-12 sm:mt-14 grid max-w-3xl grid-cols-1 gap-5 md:grid-cols-2">
 					{projects.map((project) => (
