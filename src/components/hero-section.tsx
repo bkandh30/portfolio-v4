@@ -94,13 +94,13 @@ export default function HomeHero() {
 							href="/resume.pdf"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="button-primary inline-flex items-center rounded-[8px] px-5 py-2.5 text-sm font-medium hover:text-primary-foreground"
+							className="button-primary inline-flex items-center rounded-[8px] px-5 py-2.5 text-sm font-medium"
 						>
 							Resume
 						</a>
 						<a
 							href="/blog"
-							className="group ml-1 text-sm font-medium text-muted-foreground transition-colors hover:text-[var(--text-body)]"
+							className="text-link-subtle group ml-1 text-sm font-medium"
 						>
 							Blog
 							<span className="ml-0.5 inline-block transition-transform group-hover:translate-x-0.5">
@@ -131,7 +131,7 @@ export default function HomeHero() {
 											: 'noopener noreferrer'
 									}
 									aria-label={link.label}
-									className="inline-flex size-10 items-center justify-center rounded-full border border-border/80 bg-card/35 text-muted-foreground shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-border hover:bg-white/6 hover:text-[var(--text-strong)]"
+									className="interactive-surface-button focus-ring-subtle inline-flex size-10 items-center justify-center rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm hover:-translate-y-0.5"
 								>
 									<Icon size={17} strokeWidth={1.9} />
 								</a>

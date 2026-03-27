@@ -62,7 +62,7 @@ export default function ExperienceSection() {
 							].map((tech) => (
 								<span
 									key={tech}
-									className="rounded-full border border-border bg-[var(--chip-bg)] px-2.5 py-0.5 text-xs text-[var(--text-muted)]"
+									className="chip rounded-full px-2.5 py-0.5 text-xs"
 								>
 									{tech}
 								</span>
@@ -115,7 +115,7 @@ export default function ExperienceSection() {
 							].map((tech) => (
 								<span
 									key={tech}
-									className="rounded-full border border-border bg-[var(--chip-bg)] px-2.5 py-0.5 text-xs text-[var(--text-muted)]"
+									className="chip rounded-full px-2.5 py-0.5 text-xs"
 								>
 									{tech}
 								</span>

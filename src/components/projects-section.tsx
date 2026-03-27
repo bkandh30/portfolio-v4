@@ -19,7 +19,7 @@ import { SectionShell } from '#/components/section-shell'
 const GITHUB_USERNAME = 'bkandh30'
 
 const githubButtonClassName =
-	'border-border/80 bg-card/35 text-[var(--text-muted)] shadow-none hover:bg-card/60 hover:text-[var(--text-strong)]'
+	'interactive-surface-button shadow-none hover:shadow-none'
 
 const projects = [
 	{
@@ -260,7 +260,7 @@ export default function ProjectsSection({
 				{projects.map((project) => (
 					<Card
 						key={project.name}
-						className="h-full gap-0 overflow-hidden border-border bg-card p-0 shadow-none"
+						className="interactive-card h-full gap-0 overflow-hidden border-border bg-card p-0 shadow-none"
 					>
 						<div className="aspect-[16/10] bg-[var(--surface-strong)]">
 							<img
@@ -288,7 +288,7 @@ export default function ProjectsSection({
 								{project.tech.map((t) => (
 									<span
 										key={t}
-										className="rounded-full border border-border bg-[var(--chip-bg)] px-2 py-px text-[11px] text-[var(--text-muted)]"
+										className="chip rounded-full px-2 py-px text-[11px]"
 									>
 										{t}
 									</span>
@@ -338,7 +338,7 @@ export default function ProjectsSection({
 					{moreProjects.map((project) => (
 						<div
 							key={project.name}
-							className={`rounded-2xl border border-border/80 bg-card/40 ${sectionPanelInsetClassName} py-4`}
+							className={`interactive-card rounded-2xl border border-border/80 bg-card/40 ${sectionPanelInsetClassName} py-4`}
 						>
 							<div className="flex flex-col gap-3">
 								<div className="space-y-1.5">
@@ -354,7 +354,7 @@ export default function ProjectsSection({
 									href={project.githubUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-card/35 px-3 py-1.5 text-[12px] font-medium text-[var(--text-muted)] transition-[color,background-color,border-color] hover:border-border hover:bg-card/60 hover:text-[var(--text-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+									className="interactive-surface-button focus-ring-subtle inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5 text-[12px] font-medium"
 								>
 									<Github className="size-3" />
 									GitHub

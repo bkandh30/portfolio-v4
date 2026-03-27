@@ -235,7 +235,7 @@ function MobileNavMenu({
 		<Dialog.Root open={open} onOpenChange={onOpenChange}>
 			<Dialog.Trigger asChild>
 				<button
-					className="absolute right-0 z-10 rounded-full border border-transparent bg-transparent p-1.5 -mr-1.5 text-muted-foreground transition-[color,background-color,border-color] duration-200 hover:border-border/70 hover:bg-white/4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 lg:hidden"
+					className="interactive-surface-button focus-ring-subtle absolute right-0 z-10 -mr-1.5 rounded-full p-1.5 lg:hidden"
 					aria-label={open ? 'Close menu' : 'Open menu'}
 					aria-expanded={open}
 				>
@@ -257,7 +257,7 @@ function MobileNavMenu({
 						<div className="flex min-h-16 items-center justify-end">
 							<Dialog.Close asChild>
 								<button
-									className="rounded-full border border-white/8 bg-white/5 p-2 text-foreground/80 backdrop-blur-sm transition-[color,background-color,border-color,transform] duration-200 hover:border-border hover:bg-white/8 hover:text-foreground active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+									className="interactive-surface-button focus-ring-subtle rounded-full border-white/8 bg-white/5 p-2 text-foreground/85 backdrop-blur-sm active:scale-[0.98]"
 									aria-label="Close menu"
 								>
 									<X size={18} />
