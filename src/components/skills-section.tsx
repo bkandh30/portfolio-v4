@@ -68,7 +68,7 @@ export default function SkillsSection() {
 						Skills
 					</p>
 					<h2 className="section-title mt-3 text-2xl sm:text-[1.75rem]">
-						Core technologies
+						Core Technologies
 					</h2>
 				</div>
 
