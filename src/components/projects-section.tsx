@@ -13,6 +13,7 @@ import type {
 	GitHubActivityResponse,
 	GitHubContributionCalendar,
 } from '#/data/github'
+import { sectionPanelInsetClassName } from '#/lib/layout'
 import { SectionShell } from '#/components/section-shell'
 
 const GITHUB_USERNAME = 'bkandh30'
@@ -269,7 +270,9 @@ export default function ProjectsSection({
 							/>
 						</div>
 
-						<CardHeader className="gap-1.5 px-4 pt-4 pb-0">
+						<CardHeader
+							className={`${sectionPanelInsetClassName} gap-1.5 pt-4 pb-0`}
+						>
 							<CardTitle className="text-[15px] tracking-tight text-[var(--text-strong)]">
 								{project.name}
 							</CardTitle>
@@ -278,7 +281,9 @@ export default function ProjectsSection({
 							</CardDescription>
 						</CardHeader>
 
-						<CardContent className="px-4 pt-3 pb-0">
+						<CardContent
+							className={`${sectionPanelInsetClassName} pt-3 pb-0`}
+						>
 							<div className="flex flex-wrap gap-1">
 								{project.tech.map((t) => (
 									<span
@@ -291,7 +296,9 @@ export default function ProjectsSection({
 							</div>
 						</CardContent>
 
-						<CardFooter className="mt-auto gap-2 px-4 pb-4 pt-3">
+						<CardFooter
+							className={`${sectionPanelInsetClassName} mt-auto gap-2 pb-4 pt-3`}
+						>
 							<Button variant="outline" size="xs" asChild>
 								<a
 									href={project.liveUrl}
@@ -331,7 +338,7 @@ export default function ProjectsSection({
 					{moreProjects.map((project) => (
 						<div
 							key={project.name}
-							className="rounded-2xl border border-border/80 bg-card/40 px-5 py-4"
+							className={`rounded-2xl border border-border/80 bg-card/40 ${sectionPanelInsetClassName} py-4`}
 						>
 							<div className="flex flex-col gap-3">
 								<div className="space-y-1.5">
@@ -363,7 +370,9 @@ export default function ProjectsSection({
 					GitHub activity
 				</h3>
 
-				<div className="mt-5 rounded-2xl border border-border/80 bg-card/40 px-4 py-4 sm:mt-6 sm:px-5 sm:py-5">
+				<div
+					className={`mt-5 rounded-2xl border border-border/80 bg-card/40 ${sectionPanelInsetClassName} py-4 sm:mt-6 sm:py-5`}
+				>
 					<DeferredGitHubActivity
 						githubActivityPromise={githubActivityPromise}
 					/>
