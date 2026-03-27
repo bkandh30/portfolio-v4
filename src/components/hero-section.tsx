@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 import { Github, Linkedin, Mail } from 'lucide-react'
+import { SectionShell } from '#/components/section-shell'
 
 const socialLinks = [
 	{
@@ -23,7 +24,7 @@ const profilePhotoSrc = '/LinkedinHeadshot.png'
 
 export default function HomeHero() {
 	return (
-		<section className="page-wrap pt-24 pb-20 sm:pt-32 sm:pb-24">
+		<SectionShell spacing="hero">
 			<div className="mx-auto max-w-5xl lg:grid lg:grid-cols-[minmax(0,16.75rem)_minmax(0,1fr)] lg:items-center lg:gap-12 xl:gap-18">
 				<div className="hidden lg:flex lg:justify-center">
 					<div
@@ -86,7 +87,7 @@ export default function HomeHero() {
 					</p>
 
 					<div
-						className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-10 rise-in lg:justify-start"
+						className="mt-7 flex flex-wrap items-center justify-center gap-3 sm:mt-8 rise-in lg:justify-start"
 						style={{ animationDelay: '400ms' }}
 					>
 						<a
@@ -109,7 +110,7 @@ export default function HomeHero() {
 					</div>
 
 					<div
-						className="mt-5 flex items-center justify-center gap-3 rise-in lg:justify-start"
+						className="mt-4 flex items-center justify-center gap-3 rise-in lg:justify-start"
 						style={{ animationDelay: '480ms' }}
 					>
 						{socialLinks.map((link) => {
@@ -139,6 +140,6 @@ export default function HomeHero() {
 					</div>
 				</div>
 			</div>
-		</section>
+		</SectionShell>
 	)
 }

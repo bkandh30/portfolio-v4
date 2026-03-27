@@ -1,7 +1,9 @@
+import { SectionShell } from '#/components/section-shell'
+
 export default function FooterSection() {
 	return (
 		<footer className="border-t border-border">
-			<div className="page-wrap py-8 sm:py-9">
+			<SectionShell as="div" spacing="footer">
 				<div className="mx-auto max-w-2xl text-center">
 					<p className="text-[13px] leading-relaxed text-[var(--text-muted)] sm:text-sm">
 						Built with{' '}
@@ -27,7 +29,7 @@ export default function FooterSection() {
 						© 2026 Bhavya Kandhari. All rights reserved.
 					</p>
 				</div>
-			</div>
+			</SectionShell>
 		</footer>
 	)
 }

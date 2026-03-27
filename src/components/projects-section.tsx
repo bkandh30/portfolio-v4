@@ -13,6 +13,7 @@ import type {
 	GitHubActivityResponse,
 	GitHubContributionCalendar,
 } from '#/data/github'
+import { SectionShell } from '#/components/section-shell'
 
 const GITHUB_USERNAME = 'bkandh30'
 
@@ -244,151 +245,148 @@ export default function ProjectsSection({
 	githubActivityPromise: Promise<GitHubActivityResponse>
 }) {
 	return (
-		<section id="projects" className="border-t border-border">
-			<div className="page-wrap py-20 sm:py-28">
-				<div className="mx-auto max-w-3xl text-center">
-					<p className="text-[0.72rem] font-semibold tracking-wide text-[var(--accent-strong)]">
-						Projects
-					</p>
-					<h2 className="section-title mt-3 text-2xl sm:text-[1.75rem]">
-						Full-stack applications I've designed, built, and
-						shipped.
-					</h2>
-				</div>
+		<SectionShell id="projects" className="border-t border-border">
+			<div className="mx-auto max-w-3xl text-center">
+				<p className="text-[0.72rem] font-semibold tracking-wide text-[var(--accent-strong)]">
+					Projects
+				</p>
+				<h2 className="section-title mt-3 text-2xl sm:text-[1.75rem]">
+					Full-stack applications I've designed, built, and shipped.
+				</h2>
+			</div>
 
-				<div className="mx-auto mt-12 sm:mt-14 grid max-w-3xl grid-cols-1 gap-5 md:grid-cols-2">
-					{projects.map((project) => (
-						<Card
-							key={project.name}
-							className="h-full gap-0 overflow-hidden border-border bg-card p-0 shadow-none"
-						>
-							<div className="aspect-[16/10] bg-[var(--surface-strong)]">
-								<img
-									src={project.image}
-									alt={`${project.name} project preview`}
-									className="h-full w-full object-cover"
-								/>
+			<div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-5 sm:mt-12 md:grid-cols-2">
+				{projects.map((project) => (
+					<Card
+						key={project.name}
+						className="h-full gap-0 overflow-hidden border-border bg-card p-0 shadow-none"
+					>
+						<div className="aspect-[16/10] bg-[var(--surface-strong)]">
+							<img
+								src={project.image}
+								alt={`${project.name} project preview`}
+								className="h-full w-full object-cover"
+							/>
+						</div>
+
+						<CardHeader className="gap-1.5 px-4 pt-4 pb-0">
+							<CardTitle className="text-[15px] tracking-tight text-[var(--text-strong)]">
+								{project.name}
+							</CardTitle>
+							<CardDescription className="text-[13px] leading-relaxed text-[var(--text-body)]">
+								{project.description}
+							</CardDescription>
+						</CardHeader>
+
+						<CardContent className="px-4 pt-3 pb-0">
+							<div className="flex flex-wrap gap-1">
+								{project.tech.map((t) => (
+									<span
+										key={t}
+										className="rounded-full border border-border bg-[var(--chip-bg)] px-2 py-px text-[11px] text-[var(--text-muted)]"
+									>
+										{t}
+									</span>
+								))}
 							</div>
+						</CardContent>
 
-							<CardHeader className="gap-1.5 px-4 pt-4 pb-0">
-								<CardTitle className="text-[15px] tracking-tight text-[var(--text-strong)]">
-									{project.name}
-								</CardTitle>
-								<CardDescription className="text-[13px] leading-relaxed text-[var(--text-body)]">
-									{project.description}
-								</CardDescription>
-							</CardHeader>
-
-							<CardContent className="px-4 pt-3 pb-0">
-								<div className="flex flex-wrap gap-1">
-									{project.tech.map((t) => (
-										<span
-											key={t}
-											className="rounded-full border border-border bg-[var(--chip-bg)] px-2 py-px text-[11px] text-[var(--text-muted)]"
-										>
-											{t}
-										</span>
-									))}
-								</div>
-							</CardContent>
-
-							<CardFooter className="mt-auto gap-2 px-4 pb-4 pt-3">
-								<Button variant="outline" size="xs" asChild>
-									<a
-										href={project.liveUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<ExternalLink className="size-3" />
-										Live Demo
-									</a>
-								</Button>
-								<Button
-									variant="outline"
-									size="xs"
-									className={githubButtonClassName}
-									asChild
+						<CardFooter className="mt-auto gap-2 px-4 pb-4 pt-3">
+							<Button variant="outline" size="xs" asChild>
+								<a
+									href={project.liveUrl}
+									target="_blank"
+									rel="noopener noreferrer"
 								>
-									<a
-										href={project.githubUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<Github className="size-3" />
-										GitHub
-									</a>
-								</Button>
-							</CardFooter>
-						</Card>
+									<ExternalLink className="size-3" />
+									Live Demo
+								</a>
+							</Button>
+							<Button
+								variant="outline"
+								size="xs"
+								className={githubButtonClassName}
+								asChild
+							>
+								<a
+									href={project.githubUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Github className="size-3" />
+									GitHub
+								</a>
+							</Button>
+						</CardFooter>
+					</Card>
+				))}
+			</div>
+
+			<div className="mx-auto mt-12 w-full max-w-2xl sm:mt-14">
+				<h3 className="text-center text-base font-semibold tracking-tight text-[var(--text-strong)] sm:text-lg">
+					More projects
+				</h3>
+
+				<div className="mt-5 space-y-3 sm:mt-6">
+					{moreProjects.map((project) => (
+						<div
+							key={project.name}
+							className="rounded-2xl border border-border/80 bg-card/40 px-5 py-4"
+						>
+							<div className="flex flex-col gap-3">
+								<div className="space-y-1.5">
+									<h4 className="text-sm font-semibold tracking-tight text-[var(--text-strong)] sm:text-[15px]">
+										{project.name}
+									</h4>
+									<p className="text-[13px] leading-relaxed text-[var(--text-body)]">
+										{project.description}
+									</p>
+								</div>
+
+								<a
+									href={project.githubUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-card/35 px-3 py-1.5 text-[12px] font-medium text-[var(--text-muted)] transition-[color,background-color,border-color] hover:border-border hover:bg-card/60 hover:text-[var(--text-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+								>
+									<Github className="size-3" />
+									GitHub
+								</a>
+							</div>
+						</div>
 					))}
 				</div>
+			</div>
 
-				<div className="mx-auto mt-14 w-full max-w-2xl sm:mt-16">
-					<h3 className="text-center text-base font-semibold tracking-tight text-[var(--text-strong)] sm:text-lg">
-						More projects
-					</h3>
+			<div className="mx-auto mt-12 w-full max-w-2xl sm:mt-14">
+				<h3 className="text-center text-base font-semibold tracking-tight text-[var(--text-strong)] sm:text-lg">
+					GitHub activity
+				</h3>
 
-					<div className="mt-5 space-y-3 sm:mt-6">
-						{moreProjects.map((project) => (
-							<div
-								key={project.name}
-								className="rounded-2xl border border-border/80 bg-card/40 px-5 py-4"
-							>
-								<div className="flex flex-col gap-3">
-									<div className="space-y-1.5">
-										<h4 className="text-sm font-semibold tracking-tight text-[var(--text-strong)] sm:text-[15px]">
-											{project.name}
-										</h4>
-										<p className="text-[13px] leading-relaxed text-[var(--text-body)]">
-											{project.description}
-										</p>
-									</div>
-
-									<a
-										href={project.githubUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-card/35 px-3 py-1.5 text-[12px] font-medium text-[var(--text-muted)] transition-[color,background-color,border-color] hover:border-border hover:bg-card/60 hover:text-[var(--text-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
-									>
-										<Github className="size-3" />
-										GitHub
-									</a>
-								</div>
-							</div>
-						))}
-					</div>
+				<div className="mt-5 rounded-2xl border border-border/80 bg-card/40 px-4 py-4 sm:mt-6 sm:px-5 sm:py-5">
+					<DeferredGitHubActivity
+						githubActivityPromise={githubActivityPromise}
+					/>
 				</div>
 
-				<div className="mx-auto mt-14 w-full max-w-2xl sm:mt-16">
-					<h3 className="text-center text-base font-semibold tracking-tight text-[var(--text-strong)] sm:text-lg">
-						GitHub activity
-					</h3>
-
-					<div className="mt-5 rounded-2xl border border-border/80 bg-card/40 px-4 py-4 sm:mt-6 sm:px-5 sm:py-5">
-						<DeferredGitHubActivity
-							githubActivityPromise={githubActivityPromise}
-						/>
-					</div>
-
-					<div className="mt-4 flex justify-center">
-						<Button
-							variant="outline"
-							size="xs"
-							className={`${githubButtonClassName} rounded-full px-3 py-1.5`}
-							asChild
+				<div className="mt-4 flex justify-center">
+					<Button
+						variant="outline"
+						size="xs"
+						className={`${githubButtonClassName} rounded-full px-3 py-1.5`}
+						asChild
+					>
+						<a
+							href={`https://github.com/${GITHUB_USERNAME}`}
+							target="_blank"
+							rel="noopener noreferrer"
 						>
-							<a
-								href={`https://github.com/${GITHUB_USERNAME}`}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<Github className="size-3" />
-								View GitHub Profile
-							</a>
-						</Button>
-					</div>
+							<Github className="size-3" />
+							View GitHub Profile
+						</a>
+					</Button>
 				</div>
 			</div>
-		</section>
+		</SectionShell>
 	)
 }

@@ -1,9 +1,8 @@
+import { SectionShell } from '#/components/section-shell'
+
 export default function AboutSection() {
 	return (
-		<section
-			id="about"
-			className="page-wrap border-t border-border py-20 sm:py-28"
-		>
+		<SectionShell id="about" className="border-t border-border">
 			<div className="mx-auto max-w-3xl text-center">
 				<div>
 					<p className="text-[0.72rem] font-semibold tracking-wide text-[var(--accent-strong)]">
@@ -13,7 +12,7 @@ export default function AboutSection() {
 						Backend engineering with a product sensibility.
 					</h2>
 
-					<div className="mx-auto mt-6 max-w-2xl text-left">
+					<div className="mx-auto mt-5 max-w-2xl text-left">
 						<p className="text-[15px] leading-relaxed text-foreground sm:text-base">
 							I'm a software engineer with 4 years of experience
 							building backend services, internal platforms, and
@@ -35,6 +34,6 @@ export default function AboutSection() {
 					</div>
 				</div>
 			</div>
-		</section>
+		</SectionShell>
 	)
 }
