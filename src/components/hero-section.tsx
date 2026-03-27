@@ -1,4 +1,23 @@
 import { Badge } from '@/components/ui/badge'
+import { Github, Linkedin, Mail } from 'lucide-react'
+
+const socialLinks = [
+	{
+		label: 'LinkedIn',
+		href: 'https://linkedin.com/in/kandharibhavya',
+		icon: Linkedin,
+	},
+	{
+		label: 'GitHub',
+		href: 'https://github.com/bkandh30',
+		icon: Github,
+	},
+	{
+		label: 'Email',
+		href: 'mailto:apply.bhavya.kandhari@gmail.com',
+		icon: Mail,
+	},
+] as const
 
 export default function HomeHero() {
 	return (
@@ -67,6 +86,36 @@ export default function HomeHero() {
 							→
 						</span>
 					</a>
+				</div>
+
+				<div
+					className="mt-5 flex items-center justify-center gap-3 rise-in"
+					style={{ animationDelay: '480ms' }}
+				>
+					{socialLinks.map((link) => {
+						const Icon = link.icon
+
+						return (
+							<a
+								key={link.label}
+								href={link.href}
+								target={
+									link.href.startsWith('mailto:')
+										? undefined
+										: '_blank'
+								}
+								rel={
+									link.href.startsWith('mailto:')
+										? undefined
+										: 'noopener noreferrer'
+								}
+								aria-label={link.label}
+								className="inline-flex size-10 items-center justify-center rounded-full border border-border/80 bg-card/35 text-muted-foreground shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-border hover:bg-white/6 hover:text-[var(--text-strong)]"
+							>
+								<Icon size={17} strokeWidth={1.9} />
+							</a>
+						)
+					})}
 				</div>
 			</div>
 		</section>
