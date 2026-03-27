@@ -1,3 +1,10 @@
+import {
+	timelineBodyClassName,
+	timelineInnerClassName,
+	timelineItemClassName,
+	timelineTitleClassName,
+} from '#/lib/timeline-hover'
+
 export default function EducationSection() {
 	return (
 		<section id="education" className="border-t border-border">
@@ -13,41 +20,45 @@ export default function EducationSection() {
 
 				<div className="mx-auto mt-12 max-w-2xl space-y-10 text-left sm:mt-14 sm:space-y-12">
 					{/* ── Arizona State University ── */}
-					<article className="border-l-2 border-border pl-5 sm:pl-6">
-						<div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-							<h3 className="text-xl font-semibold tracking-tight text-[var(--text-strong)]">
-								Arizona State University
-							</h3>
-							<span className="text-sm shrink-0 text-[var(--text-muted)]">
-								Aug 2023 — May 2025
-							</span>
-						</div>
+					<article className={timelineItemClassName}>
+						<div className={timelineInnerClassName}>
+							<div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+								<h3 className={timelineTitleClassName}>
+									Arizona State University
+								</h3>
+								<span className="text-sm shrink-0 text-[var(--text-muted)]">
+									Aug 2023 — May 2025
+								</span>
+							</div>
 
-						<p className="mt-1.5 text-[15px] text-foreground sm:text-base">
-							Master of Science in Computer Science
-						</p>
-						<p className="mt-1 text-sm text-[var(--text-muted)]">
-							Tempe, Arizona
-						</p>
+							<p className={`${timelineBodyClassName} mt-1.5`}>
+								Master of Science in Computer Science
+							</p>
+							<p className="mt-1 text-sm text-[var(--text-muted)]">
+								Tempe, Arizona
+							</p>
+						</div>
 					</article>
 
 					{/* ── Amity University Noida ── */}
-					<article className="border-l-2 border-border pl-5 sm:pl-6">
-						<div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-							<h3 className="text-xl font-semibold tracking-tight text-[var(--text-strong)]">
-								Amity University Noida
-							</h3>
-							<span className="text-sm shrink-0 text-[var(--text-muted)]">
-								Aug 2017 — May 2021
-							</span>
-						</div>
+					<article className={timelineItemClassName}>
+						<div className={timelineInnerClassName}>
+							<div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+								<h3 className={timelineTitleClassName}>
+									Amity University Noida
+								</h3>
+								<span className="text-sm shrink-0 text-[var(--text-muted)]">
+									Aug 2017 — May 2021
+								</span>
+							</div>
 
-						<p className="mt-1.5 text-[15px] text-foreground sm:text-base">
-							Bachelor of Technology in Computer Science
-						</p>
-						<p className="mt-1 text-sm text-[var(--text-muted)]">
-							Noida, India
-						</p>
+							<p className={`${timelineBodyClassName} mt-1.5`}>
+								Bachelor of Technology in Computer Science
+							</p>
+							<p className="mt-1 text-sm text-[var(--text-muted)]">
+								Noida, India
+							</p>
+						</div>
 					</article>
 				</div>
 			</div>

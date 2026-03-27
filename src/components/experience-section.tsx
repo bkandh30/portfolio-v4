@@ -1,3 +1,10 @@
+import {
+	timelineBodyClassName,
+	timelineInnerClassName,
+	timelineItemClassName,
+	timelineTitleClassName,
+} from '#/lib/timeline-hover'
+
 export default function ExperienceSection() {
 	return (
 		<section id="experience" className="border-t border-border">
@@ -13,10 +20,10 @@ export default function ExperienceSection() {
 
 				<div className="mx-auto mt-12 max-w-2xl space-y-12 sm:mt-14 sm:space-y-14">
 					{/* ── Liberty Mutual ── */}
-					<article className="group/item relative pl-5 before:absolute before:inset-y-0 before:left-0 before:w-px before:bg-[var(--line)] before:transition-all before:duration-200 hover:before:w-[2px] hover:before:bg-[rgba(224,204,159,0.46)] sm:pl-6">
-						<div className="rounded-[0.95rem] px-4 py-3.5 transition-[background-color] duration-200 group-hover/item:bg-white/[0.012] sm:px-5 sm:py-4">
+					<article className={timelineItemClassName}>
+						<div className={timelineInnerClassName}>
 							<div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-								<h3 className="text-xl font-semibold tracking-tight text-[var(--text-strong)] transition-colors duration-200 group-hover/item:text-[#faf6ee]">
+								<h3 className={timelineTitleClassName}>
 									Software Engineer
 								</h3>
 								<span className="text-sm shrink-0 text-[var(--text-muted)]">
@@ -29,7 +36,9 @@ export default function ExperienceSection() {
 								Arizona
 							</p>
 
-							<p className="mt-4 text-[15px] leading-relaxed text-[var(--text-body)] transition-colors duration-200 group-hover/item:text-[#e4ddcf] sm:text-base">
+							<p
+								className={`${timelineBodyClassName} mt-4 leading-relaxed`}
+							>
 								Building backend services for Liberty Mutual's
 								policy and claims platforms, with a focus on API
 								design, secure data access, event-driven
@@ -65,10 +74,10 @@ export default function ExperienceSection() {
 					</article>
 
 					{/* ── EY GDS ── */}
-					<article className="group/item relative pl-5 before:absolute before:inset-y-0 before:left-0 before:w-px before:bg-[var(--line)] before:transition-all before:duration-200 hover:before:w-[2px] hover:before:bg-[rgba(224,204,159,0.46)] sm:pl-6">
-						<div className="rounded-[0.95rem] px-4 py-3.5 transition-[background-color] duration-200 group-hover/item:bg-white/[0.012] sm:px-5 sm:py-4">
+					<article className={timelineItemClassName}>
+						<div className={timelineInnerClassName}>
 							<div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-								<h3 className="text-xl font-semibold tracking-tight text-[var(--text-strong)] transition-colors duration-200 group-hover/item:text-[#faf6ee]">
+								<h3 className={timelineTitleClassName}>
 									Associate Software Engineer
 								</h3>
 								<span className="text-sm shrink-0 text-[var(--text-muted)]">
@@ -80,7 +89,9 @@ export default function ExperienceSection() {
 								EY GDS · Kolkata, India
 							</p>
 
-							<p className="mt-4 text-[15px] leading-relaxed text-[var(--text-body)] transition-colors duration-200 group-hover/item:text-[#e4ddcf] sm:text-base">
+							<p
+								className={`${timelineBodyClassName} mt-4 leading-relaxed`}
+							>
 								Worked on internal enterprise systems and data
 								workflows with emphasis on backend development,
 								batch processing, service integration, and
