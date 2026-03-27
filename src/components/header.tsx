@@ -2,14 +2,65 @@ import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { Menu, X } from 'lucide-react'
 
-const navItems = [
-	{ label: 'About', href: '/#about' },
-	{ label: 'Experience', href: '/#experience' },
-	{ label: 'Skills', href: '/#skills' },
-	{ label: 'Education', href: '/#education' },
-	{ label: 'Projects', href: '/#projects' },
-	{ label: 'Contact Me', href: '/#contact' },
-	{ label: 'Blog', href: '/blog', isRoute: true as const },
+import {
+	NavigationMenu,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	navigationMenuTriggerStyle,
+} from '#/components/ui/navigation-menu'
+import { cn } from '#/lib/utils'
+
+type SectionNavItem = {
+	label: string
+	to: '/'
+	hash: string
+	activeOptions: {
+		exact: true
+		includeHash: true
+	}
+}
+
+type NavItem = SectionNavItem | { label: string; href: '/blog' }
+
+const navItems: NavItem[] = [
+	{
+		label: 'About',
+		to: '/',
+		hash: 'about',
+		activeOptions: { exact: true, includeHash: true },
+	},
+	{
+		label: 'Experience',
+		to: '/',
+		hash: 'experience',
+		activeOptions: { exact: true, includeHash: true },
+	},
+	{
+		label: 'Skills',
+		to: '/',
+		hash: 'skills',
+		activeOptions: { exact: true, includeHash: true },
+	},
+	{
+		label: 'Education',
+		to: '/',
+		hash: 'education',
+		activeOptions: { exact: true, includeHash: true },
+	},
+	{
+		label: 'Projects',
+		to: '/',
+		hash: 'projects',
+		activeOptions: { exact: true, includeHash: true },
+	},
+	{
+		label: 'Contact Me',
+		to: '/',
+		hash: 'contact',
+		activeOptions: { exact: true, includeHash: true },
+	},
+	{ label: 'Blog', href: '/blog' },
 ]
 
 export function SiteHeader() {
@@ -17,30 +68,42 @@ export function SiteHeader() {
 
 	return (
 		<header className="sticky top-0 z-50 bg-background border-b border-border">
-			<div className="page-wrap relative flex items-center justify-center py-4">
-				<nav className="hidden lg:block">
-					<ul className="flex items-center gap-5">
+			<div className="page-wrap relative flex min-h-16 items-center justify-center py-4.5">
+				<NavigationMenu viewport={false} className="hidden lg:flex">
+					<NavigationMenuList className="gap-6">
 						{navItems.map((item) => (
-							<li key={item.href}>
-								{item.isRoute ? (
-									<Link
-										to={item.href}
-										className="nav-link text-[13px] font-medium"
+							<NavigationMenuItem key={item.label}>
+								{'to' in item ? (
+									<NavigationMenuLink
+										asChild
+										className={cn(
+											navigationMenuTriggerStyle(),
+											'nav-link h-auto rounded-none bg-transparent px-1.5 py-1 text-sm font-medium hover:bg-transparent hover:text-inherit focus:bg-transparent focus:text-inherit focus-visible:ring-0 focus-visible:outline-none data-[active=true]:bg-transparent',
+										)}
 									>
-										{item.label}
-									</Link>
+										<Link
+											to={item.to}
+											hash={item.hash}
+											activeOptions={item.activeOptions}
+										>
+											{item.label}
+										</Link>
+									</NavigationMenuLink>
 								) : (
-									<a
-										href={item.href}
-										className="nav-link text-[13px] font-medium"
+									<NavigationMenuLink
+										asChild
+										className={cn(
+											navigationMenuTriggerStyle(),
+											'nav-link h-auto rounded-none bg-transparent px-1.5 py-1 text-sm font-medium hover:bg-transparent hover:text-inherit focus:bg-transparent focus:text-inherit focus-visible:ring-0 focus-visible:outline-none data-[active=true]:bg-transparent',
+										)}
 									>
-										{item.label}
-									</a>
+										<a href={item.href}>{item.label}</a>
+									</NavigationMenuLink>
 								)}
-							</li>
+							</NavigationMenuItem>
 						))}
-					</ul>
-				</nav>
+					</NavigationMenuList>
+				</NavigationMenu>
 
 				<button
 					className="absolute right-0 lg:hidden p-1.5 -mr-1.5 text-muted-foreground hover:text-foreground transition-colors"
@@ -56,11 +119,13 @@ export function SiteHeader() {
 				<nav className="lg:hidden border-t border-border">
 					<ul className="page-wrap flex flex-col gap-1 py-3">
 						{navItems.map((item) => (
-							<li key={item.href}>
-								{item.isRoute ? (
+							<li key={item.label}>
+								{'to' in item ? (
 									<Link
-										to={item.href}
-										className="nav-link block py-2 text-[13px] font-medium"
+										to={item.to}
+										hash={item.hash}
+										activeOptions={item.activeOptions}
+										className="nav-link block py-2.5 text-sm font-medium"
 										onClick={() => setMobileOpen(false)}
 									>
 										{item.label}
@@ -68,7 +133,7 @@ export function SiteHeader() {
 								) : (
 									<a
 										href={item.href}
-										className="nav-link block py-2 text-[13px] font-medium"
+										className="nav-link block py-2.5 text-sm font-medium"
 										onClick={() => setMobileOpen(false)}
 									>
 										{item.label}
