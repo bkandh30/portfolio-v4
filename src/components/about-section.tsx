@@ -15,7 +15,7 @@ export default function AboutSection() {
 
 					<div className="mx-auto mt-6 max-w-2xl text-left">
 						<p className="text-[15px] leading-relaxed text-foreground sm:text-base">
-							I'm a software engineer with professional experience
+							I'm a software engineer with 4 years of experience
 							building backend services, internal platforms, and
 							production APIs in Java and Spring Boot. My work has
 							spanned policy and claims systems, document
