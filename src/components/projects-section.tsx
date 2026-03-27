@@ -13,6 +13,9 @@ import {
 
 const GITHUB_USERNAME = 'bkandh30'
 
+const githubButtonClassName =
+	'border-border/80 bg-card/35 text-[var(--text-muted)] shadow-none hover:bg-card/60 hover:text-[var(--text-strong)]'
+
 const projects = [
 	{
 		name: 'EchoForge',
@@ -463,7 +466,12 @@ export default function ProjectsSection() {
 										Live Demo
 									</a>
 								</Button>
-								<Button variant="ghost" size="xs" asChild>
+								<Button
+									variant="outline"
+									size="xs"
+									className={githubButtonClassName}
+									asChild
+								>
 									<a
 										href={project.githubUrl}
 										target="_blank"
@@ -503,7 +511,7 @@ export default function ProjectsSection() {
 										href={project.githubUrl}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex w-fit items-center gap-2 text-[12px] font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
+										className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-card/35 px-3 py-1.5 text-[12px] font-medium text-[var(--text-muted)] transition-[color,background-color,border-color] hover:border-border hover:bg-card/60 hover:text-[var(--text-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
 									>
 										<Github className="size-3" />
 										GitHub
@@ -524,15 +532,21 @@ export default function ProjectsSection() {
 					</div>
 
 					<div className="mt-4 flex justify-center">
-						<a
-							href={`https://github.com/${GITHUB_USERNAME}`}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex items-center gap-2 rounded-full border border-border/80 px-3 py-1.5 text-[12px] font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
+						<Button
+							variant="outline"
+							size="xs"
+							className={`${githubButtonClassName} rounded-full px-3 py-1.5`}
+							asChild
 						>
-							<Github className="size-3" />
-							View GitHub Profile
-						</a>
+							<a
+								href={`https://github.com/${GITHUB_USERNAME}`}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Github className="size-3" />
+								View GitHub Profile
+							</a>
+						</Button>
 					</div>
 				</div>
 			</div>
