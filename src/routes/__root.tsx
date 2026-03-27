@@ -1,10 +1,7 @@
-import {
-	HeadContent,
-	Scripts,
-	createRootRoute,
-} from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { BackToTop } from '@/components/back-to-top'
 import { DottedBackground } from '@/components/dotted-background'
 import { SiteHeader } from '@/components/header'
 import Footer from '#/components/footer-section'
@@ -48,9 +45,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<DottedBackground />
-                <SiteHeader />
+				<SiteHeader />
 				{children}
-                <Footer />
+				<Footer />
+				<BackToTop />
 				<TanStackDevtools
 					config={{
 						position: 'bottom-right',
