@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { createServerFn } from '@tanstack/react-start'
+import { Await } from '@tanstack/react-router'
 import { ExternalLink, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -10,6 +9,10 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
+import type {
+	GitHubActivityResponse,
+	GitHubContributionCalendar,
+} from '#/data/github'
 
 const GITHUB_USERNAME = 'bkandh30'
 
@@ -79,13 +82,9 @@ const moreProjects = [
 ]
 
 const activityWeekLabels = [
-	{ label: 'Mon', gridRow: 1 },
-	{ label: 'Tue', gridRow: 2 },
-	{ label: 'Wed', gridRow: 3 },
-	{ label: 'Thu', gridRow: 4 },
-	{ label: 'Fri', gridRow: 5 },
-	{ label: 'Sat', gridRow: 6 },
-	{ label: 'Sun', gridRow: 7 },
+	{ label: 'Mon', gridRow: 2 },
+	{ label: 'Wed', gridRow: 4 },
+	{ label: 'Fri', gridRow: 6 },
 ] as const
 
 const contributionLevelClasses = {
@@ -95,40 +94,6 @@ const contributionLevelClasses = {
 	THIRD_QUARTILE: 'bg-emerald-800/85',
 	FOURTH_QUARTILE: 'bg-emerald-700/90',
 } as const
-
-type GitHubContributionLevel = keyof typeof contributionLevelClasses
-
-type GitHubContributionDay = {
-	date: string
-	contributionCount: number
-	contributionLevel: GitHubContributionLevel
-}
-
-type GitHubContributionWeek = {
-	firstDay: string
-	contributionDays: Array<GitHubContributionDay>
-}
-
-type GitHubContributionMonth = {
-	label: string
-	weekIndex: number
-	span: number
-}
-
-type GitHubContributionCalendar = {
-	months: Array<GitHubContributionMonth>
-	weeks: Array<GitHubContributionWeek>
-}
-
-type GitHubActivityResponse =
-	| {
-			ok: true
-			calendar: GitHubContributionCalendar
-	  }
-	| {
-			ok: false
-			error: string
-	  }
 
 type GitHubActivityState =
 	| {
@@ -144,141 +109,26 @@ type GitHubActivityState =
 			calendar: null
 	  }
 
-type GitHubGraphQLResponse = {
-	data?: {
-		user?: {
-			contributionsCollection?: {
-				contributionCalendar?: {
-					months: Array<{
-						firstDay: string
-						name: string
-						totalWeeks: number
-					}>
-					weeks: Array<{
-						firstDay: string
-						contributionDays: Array<{
-							date: string
-							contributionCount: number
-							contributionLevel: GitHubContributionLevel
-						}>
-					}>
-				}
-			}
-		}
-	}
-	errors?: Array<{
-		message: string
-	}>
-}
-
-const getGitHubActivity = createServerFn({ method: 'GET' }).handler(
-	async (): Promise<GitHubActivityResponse> => {
-		const token =
-			process.env.GITHUB_TOKEN ??
-			process.env.GH_TOKEN ??
-			process.env.GITHUB_ACCESS_TOKEN
-
-		if (!token) {
-			return { ok: false, error: 'Missing GitHub token' }
-		}
-
-		const to = new Date()
-		const from = new Date(to)
-		from.setFullYear(from.getFullYear() - 1)
-
-		const response = await fetch('https://api.github.com/graphql', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${token}`,
-				'User-Agent': 'portfolio-v4',
-			},
-			cache: 'no-store',
-			body: JSON.stringify({
-				query: `
-					query GetGitHubActivity($login: String!, $from: DateTime!, $to: DateTime!) {
-						user(login: $login) {
-							contributionsCollection(from: $from, to: $to) {
-								contributionCalendar {
-									months {
-										firstDay
-										name
-										totalWeeks
-									}
-									weeks {
-										firstDay
-										contributionDays {
-											date
-											contributionCount
-											contributionLevel
-										}
-									}
-								}
-							}
-						}
-					}
-				`,
-				variables: {
-					login: GITHUB_USERNAME,
-					from: from.toISOString(),
-					to: to.toISOString(),
-				},
-			}),
-		})
-
-		if (!response.ok) {
-			return { ok: false, error: 'GitHub request failed' }
-		}
-
-		const json = (await response.json()) as GitHubGraphQLResponse
-
-		if (json.errors?.length) {
-			return {
-				ok: false,
-				error: json.errors[0]?.message ?? 'GitHub error',
-			}
-		}
-
-		const calendar =
-			json.data?.user?.contributionsCollection?.contributionCalendar
-
-		if (!calendar) {
-			return { ok: false, error: 'Contribution calendar unavailable' }
-		}
-
-		const weeks = calendar.weeks.map((week) => ({
-			firstDay: week.firstDay,
-			contributionDays: week.contributionDays,
-		}))
-
-		const months = calendar.months
-			.map((month) => {
-				const weekIndex = weeks.findIndex(
-					(week) => week.firstDay === month.firstDay,
-				)
-
-				return {
-					label: month.name.slice(0, 3),
-					weekIndex,
-					span: month.totalWeeks,
-				}
-			})
-			.filter((month) => month.weekIndex >= 0)
-
-		return {
-			ok: true,
-			calendar: {
-				months,
-				weeks,
-			},
-		}
-	},
-)
-
 function getContributionRow(date: string) {
 	const day = new Date(`${date}T00:00:00Z`).getUTCDay()
 
 	return day === 0 ? 7 : day
+}
+
+function toGitHubActivityState(
+	result: GitHubActivityResponse,
+): GitHubActivityState {
+	if (result.ok) {
+		return {
+			status: 'ready',
+			calendar: result.calendar,
+		}
+	}
+
+	return {
+		status: 'error',
+		calendar: null,
+	}
 }
 
 function GitHubActivityGraph({ state }: { state: GitHubActivityState }) {
@@ -330,6 +180,7 @@ function GitHubActivityGraph({ state }: { state: GitHubActivityState }) {
 							<div
 								key={day.label}
 								className="flex h-[var(--cell-size)] items-center justify-end pr-2 text-[10px] leading-none text-[var(--text-muted)]"
+								style={{ gridRow: day.gridRow }}
 							>
 								{day.label}
 							</div>
@@ -366,46 +217,32 @@ function GitHubActivityGraph({ state }: { state: GitHubActivityState }) {
 	)
 }
 
-export default function ProjectsSection() {
-	const [githubActivity, setGitHubActivity] = useState<GitHubActivityState>({
-		status: 'loading',
-		calendar: null,
-	})
-
-	useEffect(() => {
-		let isMounted = true
-
-		const loadGitHubActivity = async () => {
-			try {
-				const result = await getGitHubActivity()
-
-				if (!isMounted) {
-					return
-				}
-
-				if (result.ok) {
-					setGitHubActivity({
-						status: 'ready',
-						calendar: result.calendar,
-					})
-					return
-				}
-
-				setGitHubActivity({ status: 'error', calendar: null })
-			} catch {
-				if (isMounted) {
-					setGitHubActivity({ status: 'error', calendar: null })
-				}
+function DeferredGitHubActivity({
+	githubActivityPromise,
+}: {
+	githubActivityPromise: Promise<GitHubActivityResponse>
+}) {
+	return (
+		<Await
+			promise={githubActivityPromise}
+			fallback={
+				<GitHubActivityGraph
+					state={{ status: 'loading', calendar: null }}
+				/>
 			}
-		}
+		>
+			{(result) => (
+				<GitHubActivityGraph state={toGitHubActivityState(result)} />
+			)}
+		</Await>
+	)
+}
 
-		void loadGitHubActivity()
-
-		return () => {
-			isMounted = false
-		}
-	}, [])
-
+export default function ProjectsSection({
+	githubActivityPromise,
+}: {
+	githubActivityPromise: Promise<GitHubActivityResponse>
+}) {
 	return (
 		<section id="projects" className="border-t border-border">
 			<div className="page-wrap py-20 sm:py-28">
@@ -528,7 +365,9 @@ export default function ProjectsSection() {
 					</h3>
 
 					<div className="mt-5 rounded-2xl border border-border/80 bg-card/40 px-4 py-4 sm:mt-6 sm:px-5 sm:py-5">
-						<GitHubActivityGraph state={githubActivity} />
+						<DeferredGitHubActivity
+							githubActivityPromise={githubActivityPromise}
+						/>
 					</div>
 
 					<div className="mt-4 flex justify-center">

@@ -6,19 +6,30 @@ import SkillsSection from '#/components/skills-section'
 import EducationSection from '#/components/education-section'
 import ProjectsSection from '#/components/projects-section'
 import ContactSection from '#/components/contact-section'
+import { getGitHubActivity } from '#/data/github'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({
+	loader: () => ({
+		githubActivityPromise: getGitHubActivity().catch(() => ({
+			ok: false as const,
+			error: 'Contribution activity is unavailable right now.',
+		})),
+	}),
+	component: App,
+})
 
 function App() {
+	const { githubActivityPromise } = Route.useLoaderData()
+
 	return (
 		<>
 			<HomeHero />
 			<AboutSection />
 			<ExperienceSection />
-            <SkillsSection />
-            <EducationSection />
-            <ProjectsSection />
-            <ContactSection />
+			<SkillsSection />
+			<EducationSection />
+			<ProjectsSection githubActivityPromise={githubActivityPromise} />
+			<ContactSection />
 		</>
 	)
 }
