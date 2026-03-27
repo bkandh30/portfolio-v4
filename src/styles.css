@@ -285,13 +285,11 @@ pre code {
 	transform: scaleX(1);
 }
 
-.nav-link.is-active,
-.nav-link[data-status='active'] {
+.nav-link.is-active {
 	color: #f4f4f5;
 }
 
-.nav-link.is-active::after,
-.nav-link[data-status='active']::after {
+.nav-link.is-active::after {
 	transform: scaleX(1);
 	background: #d4d4d8;
 }
@@ -357,8 +355,7 @@ pre code {
 	box-shadow: 0 0 0 3px rgba(212, 187, 138, 0.12);
 }
 
-.mobile-nav-link.is-active,
-.mobile-nav-link[data-status='active'] {
+.mobile-nav-link.is-active {
 	color: var(--text-strong);
 	background: rgba(212, 187, 138, 0.1);
 	border-color: rgba(212, 187, 138, 0.2);
