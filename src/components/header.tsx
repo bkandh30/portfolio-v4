@@ -17,14 +17,7 @@ export function SiteHeader() {
 
 	return (
 		<header className="sticky top-0 z-50 bg-background border-b border-border">
-			<div className="page-wrap flex items-center justify-between py-4">
-				<Link
-					to="/"
-					className="text-zinc-100 hover:text-white text-[15px] sm:text-base font-semibold tracking-[-0.02em] transition-colors"
-				>
-					Bhavya Kandhari
-				</Link>
-
+			<div className="page-wrap relative flex items-center justify-center py-4">
 				<nav className="hidden lg:block">
 					<ul className="flex items-center gap-5">
 						{navItems.map((item) => (
@@ -50,9 +43,10 @@ export function SiteHeader() {
 				</nav>
 
 				<button
-					className="lg:hidden p-1.5 -mr-1.5 text-muted-foreground hover:text-foreground transition-colors"
+					className="absolute right-0 lg:hidden p-1.5 -mr-1.5 text-muted-foreground hover:text-foreground transition-colors"
 					onClick={() => setMobileOpen(!mobileOpen)}
 					aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+					aria-expanded={mobileOpen}
 				>
 					{mobileOpen ? <X size={20} /> : <Menu size={20} />}
 				</button>
